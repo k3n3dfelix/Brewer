@@ -67,8 +67,8 @@ public class CervejasController {
 		} */
 		//Salvar no banco de dados
 		attributes.addFlashAttribute("mensagem","Cerveja salva com sucesso");
-		System.out.println(">>>sku" + cerveja.getSabor());
-		System.out.println(">>>sku" + cerveja.getOrigem());
+		
+		System.out.println(">>>estilo" + cerveja.getEstilo().getCodigo());
 		return new ModelAndView("redirect:/cervejas/novo");
 	}
 	
