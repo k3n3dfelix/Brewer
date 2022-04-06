@@ -1,5 +1,5 @@
 # Brewer - Em Desenvolvimento
-![GitHub repo size](https://img.shields.io/github/repo-size/k3n3dfelix/Brewer)
+![GitHub repo size](https://img.shields.io/github/repo-size/k3n3dfelix/Brewer) ![GitHub language count](https://img.shields.io/github/languages/count/k3n3dfelix/Brewer)
 <p align="center"> Sistema Web Gerenciamento de Vendas de Bebidas </p>
 <p align="center">
   <a href="#sobre">Sobre</a>
