@@ -12,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -37,25 +40,36 @@ public class Cerveja {
 	@Size(min =1, max = 50, message = "O tamenho da descrição deve estar entre 1 e 50")
 	private String descricao;
 	
+	@NotBlank(message = "Valor é obrigatório")
+	@DecimalMin("0.01")
+	@DecimalMax(value= "9999999.99", message= "O valor da cerveja deve ser menor que R$9.999.999,99")
 	private BigDecimal valor;
 	
+	@NotBlank(message = "O teor alcoolico é obrigatório")
+	@DecimalMax(value= "100.0", message= "O valor o teor alcoólico deve ser menor que 100")
 	@Column(name = "teor_alcoolico")
 	private BigDecimal teorAlcoolico;
 	
+	@DecimalMax(value= "100.0", message= "O valor comissão deve ser igual ou menor que 100")
 	private BigDecimal comissao;
 	
+	@Max(value = 9999, message = "A quantidade em estoque deve ser menor que 9.999")
 	@Column(name = "quantidade_estoque")
 	private Integer quantidadeEstoque;
 	
+	@NotBlank(message = "A origem é obrigatória")
 	@Enumerated(EnumType.STRING)
 	private Origem origem;
 	
+	@NotBlank(message = "A sabor é obrigatório")
 	@Enumerated(EnumType.STRING)
 	private Sabor sabor;
 	
+	@NotBlank(message = "A estilo é obrigatório")
 	@ManyToOne
 	@JoinColumn(name = "codigo_estilo")
 	private Estilo estilo;
+	
 	
 	public String getSku() {
 		return sku;
