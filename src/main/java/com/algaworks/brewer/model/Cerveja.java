@@ -60,11 +60,11 @@ public class Cerveja {
 	private Integer quantidadeEstoque;
 	
 	//@NotBlank(message = "A origem é obrigatória")
-	//@Enumerated(EnumType.STRING)
+	@Enumerated(EnumType.STRING)
 	private Origem origem;
 	
 	//@NotBlank(message = "A sabor é obrigatório")
-	//@Enumerated(EnumType.STRING)
+	@Enumerated(EnumType.STRING)
 	private Sabor sabor;
 	
 	//@NotBlank(message = "A estilo é obrigatório")
