@@ -80,4 +80,17 @@ public class CervejasController {
 	public String cadastro(){
 		return "cerveja/cadastro-produto";
 	}
+	
+	@RequestMapping("/cervejas/pesquisa")
+	public ModelAndView pesquisa(Cerveja cerveja){
+		
+		ModelAndView mv = new ModelAndView("cerveja/PesquisaCerveja");
+		
+		
+		//cervejas.findAll();
+		//Optional<Cerveja> cervejaOptional = cervejas.findBySkuIgnoreCase("AAA111");
+		//System.out.println(cervejaOptional.isPresent());
+		
+		return mv;
+	}
 }
