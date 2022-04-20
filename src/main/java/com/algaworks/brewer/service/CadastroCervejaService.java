@@ -15,6 +15,7 @@ public class CadastroCervejaService {
 	
 	@Transactional
 	public void salvar(Cerveja cerveja){
+		
 		cervejas.save(cerveja);
 	}
 }

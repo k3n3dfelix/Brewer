@@ -2,7 +2,7 @@ package com.algaworks.brewer.model;
 
 public enum Sabor {
 	
-	AODCICADA("Adoçicada"),
+	ADOCICADA("Adoçicada"),
 	AMARGA("Amarga"),
 	FORTE("Forte"),
 	FRUTADA("Frutada"),
