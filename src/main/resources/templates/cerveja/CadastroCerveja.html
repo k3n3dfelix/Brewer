@@ -3,7 +3,8 @@
 	  xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:th="http://www.thymeleaf.org"
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	  layout:decorator="layout/LayoutPadrao">
+	  layout:decorator="layout/LayoutPadrao"
+	  xmlns:brewer="http://brewer.algaworks.com">
 <head></head>
 <body>
 <section layout:fragment="conteudo">
@@ -32,7 +33,7 @@
 		
 		<div class="row">
 			<div class="col-sm-2">
-				<div class="form-group" th:classappend="${#fields.hasErrors('sku')} ? has-error">
+				<div class="form-group" brewer:classforerror="sku">
 					<label for="sku" class="control-label">Sku*</label>
 					<input id="sku" type="text" class="form-control" th:field="*{sku}"/>
 				</div>
