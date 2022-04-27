@@ -15,3 +15,10 @@
 </br>
 
 <h4 align="center"> Projeto README - Em construção...</h4>
+
+## Telas já desenvolvidas 
+<img src="https://github.com/k3n3dfelix/Brewer/blob/main/screens/cadastro-usuario.JPG"  />
+<img src="https://github.com/k3n3dfelix/Brewer/blob/main/screens/cadastro-clientes.JPG"  />
+<img src="https://github.com/k3n3dfelix/Brewer/blob/main/screens/cadastro-cervejas.JPG"  />
+<img src="https://github.com/k3n3dfelix/Brewer/blob/main/screens/cadastro-estilos-cervejas.JPG" />
+
