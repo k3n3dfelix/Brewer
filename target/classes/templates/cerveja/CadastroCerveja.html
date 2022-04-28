@@ -133,11 +133,15 @@
 				<input type="hidden" th:field="*{contentType}"/>
 				
 				<label class="control-label">Foto</label>
-				<div id="upload-drop" class="bw-upload">
-					<i class="glyphicon glyphicon-cloud-upload"></i>
-					<span>Arraste a foto aqui ou</span>
-					<a class="bw-upload-form-file">Selecione <input id="upload-select" type="file" accept=".jpg,.jpeg,.png"/></a>
+				<div class="js-foto-cerveja">
+					<div id="upload-drop" class="bw-upload">
+						<i class="glyphicon glyphicon-cloud-upload"></i>
+						<span>Arraste a foto aqui ou</span>
+						<a class="bw-upload-form-file">Selecione <input id="upload-select" type="file" accept=".jpg,.jpeg,.png"/></a>
+					</div>
 				</div>
+				
+				
 			</div>
 		</div>
 		<div class="form-group">
@@ -148,11 +152,13 @@
 </div>
 
 <div th:replace="estilo/CadastroRapidoEstilo :: modal"></div>
+<th:block th:replace="hbs/FotoCerveja"></th:block>
 </section>
 <th:block layout:fragment="javascript-extra">
 	<script th:src="@{/layout/javascripts/estilo.cadastro-rapido.js}"></script>
 	<script th:src="@{/layout/javascripts/vendors/uikit.min.js}"></script>
 	<script th:src="@{/layout/javascripts/vendors/upload.min.js}"></script>
+		<script th:src="@{/layout/javascripts/vendors/handlebars.min.js}"></script>
 	<script>
 		$(function(){
 			var settings = {
@@ -163,6 +169,15 @@
 					complete:function(resposta){
 						$('input[name=foto]').val(resposta.nome);
 						$('input[name=contentType]').val(resposta.contentType);
+						
+						var htmlFotoCervejaTemplate = $('#foto-cerveja').html();
+						var template = Handlebars.compile(htmlFotoCervejaTemplate);
+						var htmlFotoCerveja = template({nomeFoto: resposta.nome});
+						
+						$('#upload-drop').addClass('hidden');
+						var containerFotoCerveja = $('.js-foto-cerveja');
+						containerFotoCerveja.append(htmlFotoCerveja);
+						
 					}
 			};
 			
