@@ -2,9 +2,11 @@ package com.algaworks.brewer.storage.local;
 
 import static java.nio.file.FileSystems.getDefault;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,8 +44,28 @@ public class FotoStorageLocal implements FotoStorage{
 	}
 	
 	@Override
-	public void salvarTemporariamente(MultipartFile[] files){
-		System.out.println(">>> Salvando a foto temporariamente");
+	public String salvarTemporariamente(MultipartFile[] files){
+		String novoNome = null;
+		if(files != null && files.length > 0){
+			MultipartFile arquivo = files[0];
+			novoNome = renomearArquivo(arquivo.getOriginalFilename());
+			try {
+				arquivo.transferTo(new File(this.localTemporario.toAbsolutePath().toString() + getDefault().getSeparator() + novoNome));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				throw new RuntimeException("Erro salvando foto nas pasta temporaria", e);
+			} 
+			
+		}
+		return novoNome;
+		
+	}
+	
+	private String renomearArquivo(String nomeOriginal){
+		String novoNome = UUID.randomUUID().toString() + "_" + nomeOriginal;
+		
+		
+		return novoNome;
 	}
 	
 }
