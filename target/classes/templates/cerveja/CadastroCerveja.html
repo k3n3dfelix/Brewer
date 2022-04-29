@@ -12,9 +12,19 @@
 <section layout:fragment="conteudo">
 <div class="page-header">
 	<div class="container-fluid">
-		<h1>
-			Cadastro de Cervejas
-		</h1>
+		<div class="row">
+					<div class="col-sm-10">
+						<h1>Cadastro de Cervejas</h1>
+					</div>
+					
+					<div class="col-sm-2">
+						<div class="aw-page-header-controls">
+							<a class="btn btn-default" th:href="@{cervejas}">
+								<i class="glyphicon glyphicon-plus-sign"></i><span class="hidden-xs hidden-sm"> Pesquisa </span> 
+							</a>
+						</div>
+					</div>
+				</div>
 	</div>
 </div>
 
@@ -35,8 +45,8 @@
 		
 		<div class="row">
 			<div class="col-sm-2">
-				<div class="form-group" brewer:classforerror="sku">
-					<label for="sku" class="control-label">Sku*</label>
+				<div class="form-group bw-required" brewer:classforerror="sku">
+					<label for="sku" class="control-label">Sku</label>
 					<input id="sku" type="text" class="form-control" th:field="*{sku}"/>
 				</div>
 			</div>
@@ -158,47 +168,9 @@
 	<script th:src="@{/layout/javascripts/estilo.cadastro-rapido.js}"></script>
 	<script th:src="@{/layout/javascripts/vendors/uikit.min.js}"></script>
 	<script th:src="@{/layout/javascripts/vendors/upload.min.js}"></script>
-		<script th:src="@{/layout/javascripts/vendors/handlebars.min.js}"></script>
-	<script>
-		$(function(){
-			var settings = {
-					type: 'json',
-					filelimit: 1,
-					allow: '*.(jpg|jpeg|png)',
-					action: '/brewer/fotos',
-					complete:function(resposta){
-						
-						var inputNomeFoto = $('input[name=foto]');
-						var inputContentType = $('input[name=contentType]');
-						
-						inputNomeFoto.val(resposta.nome);
-						inputContentType.val(resposta.contentType);
-						
-						var htmlFotoCervejaTemplate = $('#foto-cerveja').html();
-						var template = Handlebars.compile(htmlFotoCervejaTemplate);
-						var htmlFotoCerveja = template({nomeFoto: resposta.nome});
-						
-						var uploadDrop = $('#upload-drop');
-						uploadDrop.addClass('hidden');
-						
-						var containerFotoCerveja = $('.js-container-foto-cerveja');
-						containerFotoCerveja.append(htmlFotoCerveja);
-						
-						$('.js-remove-foto').on('click', function(){
-							$('.js-foto-cerveja').remove();
-							uploadDrop.removeClass('hidden');
-							inputNomeFoto.val('');
-							inputContentType.val('');
-							
-						});
-						
-					}
-			};
-			
-			UIkit.uploadSelect($('#upload-select'), settings),
-	        UIkit.uploadDrop($('#upload-drop'), settings);
-		});
-	</script>
+	<script th:src="@{/layout/javascripts/vendors/handlebars.min.js}"></script>
+	<script th:src="@{/layout/javascripts/cerveja.upload-foto.js}"></script>
+	
 </th:block>
 
 </body>

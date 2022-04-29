@@ -6,22 +6,141 @@
 	  layout:decorator="layout/LayoutPadrao">
 <head></head>
 <body>
-<section layout:fragment="conteudo">
-<div class="page-header">
-	<div class="container-fluid">
-		<h1>
-			Pequisa de Cervejas
-		</h1>
+	<section layout:fragment="conteudo">
+	<div class="page-header">
+		<div class="container-fluid">
+			
+				<div class="row">
+					<div class="col-sm-10">
+						<h1>Pequisa de Cervejas</h1>
+					</div>
+					
+					<div class="col-sm-2">
+						<div class="aw-page-header-controls">
+							<a class="btn btn-default" th:href="@{novo}">
+								<i class="glyphicon glyphicon-plus-sign"></i><span class="hidden-xs hidden-sm"> Nova Cerveja</span> 
+							</a>
+						</div>
+					</div>
+				</div>
+				
+		</div>
 	</div>
-</div>
+	
+	<div class="container-fluid">
+		<form method="GET">
+			<div class="row">
+			<div class="col-sm-3">
+				<div class="form-group bw-required" >
+					<label for="sku" class="control-label">Sku</label>
+					<input id="sku" type="text" class="form-control" />
+				</div>
+			</div>
+			<div class="col-sm-9">
+				<div class="form-group" >
+					<label for="nome" class="control-label">Nome*</label>
+					<input id="nome" type="text" class="form-control" />
+				</div>
+			</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="form-group" >
+						<label for="estilo" class="control-label">Estilo</label>
+						<div class="bw-field-action">
+							<select id="estilo" class="form-control" >
+								<option value="">Selecione o estilo</option>
+								<option th:each="estilo : ${estilos}" th:value="${estilo.codigo}" th:text="${estilo.nome}">Pale Lager</option>
+							</select>
+							
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="form-group" >
+						<label for="estilo" class="control-label">Sabor</label>
+						<select id="estilo" class="form-control" >
+							<option value="">Selecione o sabor</option>
+							<option th:each="sabor : ${sabores}" th:value="${sabor}" th:text="${sabor.descricao}"></option>
+						</select>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="form-group  col-sm-6">
+					<label class="control-label">Origem</label> 
+					<div>
+	  					<th:block th:each="origem : ${origens}">
+	  						<div class="radio  radio-inline">
+		    					<input th:id="|id_${origem}|" type="radio" th:value="${origem}" name="origem"/>
+		    					<label th:for="|id_${origem}|" th:text="${origem}">Nacional</label>
+	    					</div>
+	  					</th:block>
+	  					<div class="radio  radio-inline">
+		    				<input id="todasOrigens" type="radio" th:checked="*{origem} == null" name="origem"/>
+		    				<label for="todasOrigens" >Todas</label>
+	    				</div>
+					</div>
+				</div>
 
-<div class="container-fluid">
-
-</div>
-
-<div th:replace="estilo/CadastroRapidoEstilo :: modal"></div>
-</section>
+				<div class="col-sm-6  form-group">
+					<label for="precoDe">Preço unitário</label>
+					<div class="form-inline">
+						<input type="text" class="form-control  aw-form-control-inline-sm  js-decimal" id="precoDe"/>
+						<label for="precoAte" class="aw-form-label-between">até</label>
+						<input type="text" class="form-control  aw-form-control-inline-sm  js-decimal" id="precoAte"/>
+					</div>
+				</div>
+			</div>
+			
+			<button type="submit" class="btn  btn-primary">Pesquisar</button>
+		</form>
+		
+		<div class="table-responsive  bw-tabela-simples">
+			<table class="table  table-hover">
+				<thead>
+					<tr>
+						<th class="table-cervejas-col-foto"></th>
+						<th class="table-cervejas-col-sku">SKU</th>
+						<th class="table-cervejas-col-nome">Nome</th>
+						<th class="table-cervejas-col-estilo">Estilo</th>
+						<th class="table-cervejas-col-origem">Origem</th>
+						<th class="table-cervejas-col-valor">Valor</th>
+						<th class="table-cervejas-col-acoes"></th>
+					</tr>
+				</thead>
+				
+				<tbody>
+					<tr th:each="cerveja : ${cervejas}">
+						<td class="text-center">
+							<img th:src="@{/fotos/temp/{foto}(foto=${cerveja.foto})}" class="img-responsive"/>
+						</td>
+						<td class="text-center" th:text="${cerveja.sku}">AA1234</td>
+						<td th:text="${cerveja.nome}">Cerveja Stella</td>
+						<td th:text="${cerveja.estilo.nome}">Lager</td>
+						<td th:text="${cerveja.origem}">Internacional</td>
+						<td class="text-right" th:text="|R$ ${cerveja.valor}|">R$ 8.00</td>
+						<td class="text-center">
+							<a class="btn  btn-link  btn-xs" title="Editar"> 
+								<i class="glyphicon glyphicon-pencil"></i>
+							</a>
+							<a class="btn  btn-link  btn-xs" title="Excluir">
+								<i class="glyphicon glyphicon-remove"></i>
+							</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		
+	</div>
+	
+	<div th:replace="estilo/CadastroRapidoEstilo :: modal"></div>
+	</section>
 </body>
+</html>
 
 
 
