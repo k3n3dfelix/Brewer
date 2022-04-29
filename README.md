@@ -21,4 +21,6 @@
 <img src="https://github.com/k3n3dfelix/Brewer/blob/main/screens/cadastro-clientes.JPG"  />
 <img src="https://github.com/k3n3dfelix/Brewer/blob/main/screens/cadastro-cervejas.JPG"  />
 <img src="https://github.com/k3n3dfelix/Brewer/blob/main/screens/cadastro-estilos-cervejas.JPG" />
+<img src="https://github.com/k3n3dfelix/Brewer/blob/main/screens/pesquisa-cervejas.JPG" />
+
 
